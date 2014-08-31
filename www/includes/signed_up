@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<?php include "/data/klattr.com/www/includes/head"; ?>
+  <body onload="validateForm(Exists)">
+    <?php include "/data/klattr.com/www/includes/header"; ?>
+    <?php include "/data/klattr.com/www/includes/footer"; ?>
+  </body>
+

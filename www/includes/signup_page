@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<?php include "/data/klattr.com/www/includes/head"; ?>
+  <body onload="validateForm(Exists)">
+    <script>
+      Exists = 0;
+      Exists = <?php echo $exists;  ?>;
+    </script>
+    <?php include "/data/klattr.com/www/includes/header"; ?>
+    <div class="body_center">
+      <div class="do_signup">
+        <h1>Join Klattr Now.</h1>
+        <form name="SignUp" action="/do_signup.php" method="post">
+          <div class="form_line">
+            <div class="form_text">Full Name:</div>
+            <div class="form_val" id="val_name"></div>
+            <input type="text" class="gen_input" name="name" value="<?php echo $name; ?>" onkeyup="validateForm(Exists)" onblur="validateForm(Exists)">
+          </div>
+          <div class="form_line">
+            <div class="form_text">eMail Address:</div>
+            <div class="form_val" id="val_email"></div>
+            <input type="text" class="gen_input" name="email" value="<?php echo $email; ?>" onkeyup="validateForm(Exists)" onblur="validateForm(Exists)">
+          </div>
+          <div class="form_line">
+            <div class="form_text">Password:</div>
+            <div class="form_val" id="val_pass"></div>
+            <input type="password" class="gen_input" name="password" value="<?php echo $password; ?>" onkeyup="validateForm(Exists)" onblur="validateForm(Exists)">
+          </div>
+          <div class="form_line">
+            <div class="form_text">User Name:</div>
+            <div class="form_val" id="val_uname"></div>
+            <input type="text" class="gen_input" name="username" value="<?php echo $username; ?>" onkeyup="validateForm(Exists)" onblur="validateForm(Exists)">
+          </div>
+
+          <img src="/gfx/hr.png" width="450" height="1"/>
+          <div class="form_line">
+            <div class="form_text">Legal Notice:</div>
+          </div>
+          <div class="legal">
+            <?php include "/data/klattr.com/www/includes/legal"; ?>
+          </div>
+          <img src="/gfx/hr.png" width="450" height="1"/>
+          <div class="form_line" style="width:150px;">
+            <div class="form_text" style="font-size:10px; top:0px;">Keep me signed in.</div>
+            <input type="checkbox" name="stay_signed_in" value="yes" class="checkbox_login" checked>
+          </div>
+
+          <div class="form_line">
+            <div class="form_val">&nbsp;</div>
+            <div id="sub_div"><input type="submit" class="submit_signup" style="width:200px;" value="Sign Up!"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <?php include "/data/klattr.com/www/includes/footer"; ?>
+  </body>
+

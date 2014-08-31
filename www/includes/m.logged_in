@@ -1,0 +1,9 @@
+<div id="body">
+    <div class="feed">
+<!--      <?php include "/data/klattr.com/www/includes/user_panel"; ?> -->
+<?php include "/data/klattr.com/www/includes/klattr_retrieve_queries"; ?>
+<?php include "/data/klattr.com/www/includes/m.render_klattrs"; ?>
+<?php include "/data/klattr.com/www/includes/do_scroll"; ?>
+
+    </div>
+</div>

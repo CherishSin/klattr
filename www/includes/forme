@@ -1,0 +1,12 @@
+<div id="body">
+  <div class="body_center">
+    <div class="feed">
+      <?php include "/data/klattr.com/www/includes/user_panel"; ?>
+      <div class="feed_inner" id="klattr_parent">
+<?php include "/data/klattr.com/www/includes/klattr_retrieve_queries"; ?>
+<?php include "/data/klattr.com/www/includes/render_klattrs"; ?>
+<?php include "/data/klattr.com/www/includes/do_scroll"; ?>
+      </div>
+    </div>
+  </div>
+</div>

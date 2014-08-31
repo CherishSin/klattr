@@ -1,0 +1,17 @@
+<div id="footer">
+<div class="copyright">&copy; 2014 Klattr</div>
+</div>
+<div class="dialog_wrapper" id="popAlert">
+  <div class="dialog" id="popAlert_message">
+  </div>
+</div>
+
+<img src="/gfx/stop_dark.png" class="preload">
+<img src="/gfx/stop_light.png" class="preload">
+<img src="/gfx/play_dark.png" class="preload">
+<img src="/gfx/play_light.png" class="preload">
+<img src="/gfx/rec_light.png" class="preload">
+<img src="/gfx/signup_button_dark.png" class="preload">
+<img src="/gfx/cancel_button_dark.png" class="preload">
+<img src="/gfx/login_button_dark.png" class="preload">
+<img src="/gfx/Still-progress.gif" class="preload">

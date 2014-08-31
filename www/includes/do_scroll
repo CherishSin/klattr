@@ -1,0 +1,17 @@
+<?php
+if ($count > 0 || $pcount > 0) {
+?>
+
+        <script>
+            $(document).ready(function() {
+                $(window).scroll(function() {
+                    if ($('body').height() <= ($(window).height() + $(window).scrollTop())) {
+                        retrieve_more('<?php echo $page; ?>');
+                    }
+                });
+            });    
+        </script>
+
+<?php
+}
+?>

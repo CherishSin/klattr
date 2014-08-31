@@ -1,0 +1,28 @@
+<img src="/gfx/klattr_big.png" class="preload">
+<div id="header">
+  <div style="width:100%;position:relative;float:right">
+    <a href="https://klattr.com"><img src="/gfx/klattr_text_small.png" id="header_logo"></a>
+<?php
+if ($auth == 1 && $activatePage != 1) {
+?>
+    <a href="https://klattr.com/<?php echo $uname; ?>"><img id="user_pic_small" src="<?php echo $userPic; ?>"></a>
+
+    <form name="SearchForm" action="/search.php" method="GET">
+      <input type="submit" class="search_submit" value="Go"><input type="text" class="search_input" name="search" placeholder="Search!">
+    </form>
+
+<!--    <div onclick="location.href='https://m.klattr.com/do_logout.php'" class="header_logout">Logout <?php echo $uname; ?></div> -->
+  </div>
+  <div style="width:100%;position:relative;float:right;">
+    <div onclick="location.href='https://m.klattr.com'" class="header_button<?php if ($page == "Feed") {echo "_selected";}  ?>">&#9777; Feed</div>
+    <div onclick="location.href='https://m.klattr.com/in.php'" class="header_button<?php if ($page == "Forme") {echo "_selected";}  ?>">&#62; In</div>
+
+
+
+<?php  
+
+
+}
+?>
+  </div>
+</div>

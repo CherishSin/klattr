@@ -1,0 +1,13 @@
+<html>
+<body>
+
+<div style="width:600px;margin-right:auto;margin-left:auto;border-style:solid;border-width:1px;">
+<h1 style="color:#ffffff;background-color:#686A88;padding:5px;margin:0px">Welcome to Klattr.</h1><div style="background-image:url('https://klattr.com/gfx/welcome_bg.png');background-repeat:no-repeat;padding:5px">
+Dear FULLNAME.<br><br>
+Thank you for signing up with Klattr. Please follow <a href="https://klattr.com/activate.php?key=UNIQUEKEY">this link</a> to activate your account or copy and paste the below into your browser address bar.<br>
+https://klattr.com/activate.php?key=UNIQUEKEY<br><br>
+The Klattr Team.
+</div></div>
+
+</body>
+</html>

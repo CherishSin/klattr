@@ -1,0 +1,14 @@
+<?php
+function evaluate_cookie ($e_key, $e_ip) {
+  global $con;
+  $sql = "SELECT SessionKey, UserID, IP FROM Session WHERE SessionKey='$e_key'";
+  $sql_result = mysqli_query($con,$sql);
+  $row = mysqli_fetch_array($sql_result);
+  if ($row['IP'] == $e_ip) {
+    $result = $row['UserID'];
+  } else {
+    $result = 0;
+  } 
+  return $result;
+}
+?>

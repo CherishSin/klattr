@@ -1,0 +1,143 @@
+<?php
+include "/data/klattr.com/www/includes/fuzzyago";
+$count = 0;
+while ($row = mysqli_fetch_array($sql_result)){
+  if ($row['Data'] != "") {
+    $count ++;
+    $klattr_id = $row['ID'];
+  if (isset($nestLevel)) {
+    $nestID = "_nest" . $nestLevel;
+  }
+?>
+<!--#######################################################################################-->
+
+
+<div class="klattr_div" id="<?php echo $row['Data'] . $nestID;?>"><div class="klattr_div_inner">
+  <div style="width:100%">
+    <center>
+      <h6><?php echo $row['Title'];?> 
+        <div style="font-family:  KlattrFont, Arial;font-size:10px; color:#535353;">(About <?php echo fuzzyAgo($row['Time_Posted']); ?>)
+        </div>
+      </h6>
+    </center>
+
+    <?php echo $row['Handle']; ?>
+
+    <div style="width:100%">
+<?php
+    if ($row['Handle'] == $uname) {
+?>
+
+      <div class="delete_klattr" onclick="delete_klattr('<?php echo $row['Data']; ?>')">
+        <form id="delete"><img src="/gfx/delete.png" height="15" style="display:inline;float:right">
+        </form>
+      </div>
+
+<?php
+    }
+?>
+      <div class="tags" style="width:230px;">
+<?php
+  if ($row['Recipient'] != "  ") {
+    echo "        To: ";
+  }
+
+$recipient_array = explode(" ", $row['Recipient']);
+foreach ($recipient_array as &$recipient){
+  if ($recipient != "") {
+    echo "<a href=\"/$recipient\">\n          <div class=\"tag\" style=\"height:10px;padding:1px;\">$recipient\n          </div>\n        </a> ";
+  }
+}
+//echo $row['Recipient'];
+?>
+
+      </div>
+      <div class="clear"></clear>
+    </div>
+  </div>
+  <a href="/<?php echo $row['Handle']; ?>"><img class="klattr_img" src="/<?php echo $row['Handle']; ?>.jpeg"></a>
+  <div class="record_div" style="width:245px;background-image:url('https://klattr.com/waveform.php?id=<?php echo $row['ID'];?>');background-size:245px 60px;" >
+    
+    <div class="play_progress" id="progress_audio_<?php echo $row['Data'] . $nestID; ?>"></div>
+    <input id="button_audio_<?php echo $row['Data'] . $nestID; ?>"type="button" class="play_button" style="top:0px; left:-30px" onclick="play_klattr('audio_<?php echo $row['Data'] . $nestID; ?>')">
+    
+  </div>
+  
+  <audio class="audios" id="audio_<?php echo $row['Data'] . $nestID; ?>" preload="auto">
+    <source src="/<?php echo $row['Data']; ?>.ogg" type="https://klattr.com/audio/ogg">
+    <source src="/<?php echo $row['Data']; ?>.mp3" type="https://klattr.com/audio/mpeg">
+    Your browser does not support this audio format.
+  </audio>
+  <div style="width:100%">
+    <input type="button" class="submit_signup" value="Reply" style="width:68px;height:16px;font-size:10px;" onclick="showeditor('record_popup'); set_recipient('<?php echo $row['Handle']; ?>', <?php echo $row['ID']; ?>)">
+    <div class="tags" style="width:195px">
+<?php 
+    $tags = preg_replace('/\s\s+/', ' ', $row['Tags']);
+    $tag_array = explode(" ", $tags);
+    foreach ($tag_array as &$tag) {
+      if ($tag != "") {
+        echo "<a href=\"/search.php?search=" . $tag . "\"><div class=\"tag\">" . $tag . "</div></a>";
+      }
+    }
+?>  
+    </div>
+<?php
+    if ($row['Num_Replies'] >= 1) {
+      if (!isset($nestLevel)) {
+        $nestLevel = 0;
+      }
+?>
+    <div class="replies">
+      <span class="fake-link" id="link<?php echo $row['ID'] . '_' . $nestLevel; ?>" onclick="get_replies(<?php echo $row['ID'] . ', ' . $nestLevel; ?>)"><?php echo $row['Num_Replies']; ?> Replies <img src="/gfx/down.png" width="8" id="up_down<?php echo $row['ID'] . '_' . $nestLevel; ?>"\>
+      </span>
+    </div>
+    <div class="clear">
+    </div>
+  </div>
+</div>
+<img src="/gfx/spacer.png" width="100%" height="1">
+<div id="Parent<?php echo $row['ID'] . '_' . $nestLevel; ?>"></div>
+<?php
+    } else {
+?>
+    <div class="clear">
+    </div>
+  </div>
+</div>  
+<?php
+    }
+?>    
+  <img src="/gfx/hr.png" width="100%" height="1" id="devider<?php echo $row['ID'] . '_' . $nestLevel; ?>">
+</div>
+<?php
+    if ($row['Num_Replies'] >= 1) {
+?>
+<!--<div class="inLineReplies" id="Parent<?php echo $row['ID']; ?>"></div>-->
+<?php
+    }
+  }
+}
+
+if ($count < 1) {
+  if ($get_more == 0 && $page != "search" ) {
+?>
+<div class="klattr_div"><center>No Klattrs Yet :(</center></div>
+<?php
+  } else if ($get_more == 1) {
+?>
+<div class="klattr_div"><center>No more Klattrs</center></div>
+<?php
+  }
+?>
+<img src="/gfx/vr.png" width="0" height="0" onload="set_oldest('no_more');this.parentNode.removeChild(this);" \>
+
+<?php
+}
+if ($page !== "replies") {
+?>
+
+<img src="/gfx/vr.png" width="0" height="0" onload="set_oldest(<?php echo $klattr_id; ?>);this.parentNode.removeChild(this);" \>
+<?php
+}
+?>
+

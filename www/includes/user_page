@@ -1,0 +1,116 @@
+<?php
+  $sql = "SELECT Handle, Name, Profile_Text, Website_Addr, Avatar, ID FROM Users WHERE Handle='$profileUname' AND BINARY(Handle) = BINARY('$profileUname') AND Activated = '1'";
+  $sql_result = mysqli_query($con,$sql);
+  $row = mysqli_fetch_array($sql_result);
+  $profileUname = $row['Handle'];
+  $profileRname = $row['Name'];
+  $profileProfile = $row['Profile_Text'];
+  $profileURL = $row['Website_Addr'];
+  $profileID = $row[ID];
+  if ($row['Avatar'] === "" || $row['Avatar'] === NULL) {
+    $profileUserPic = "/gfx/default_user.png";
+  } else {
+    $profileUserPic = $profileUname . ".jpeg";
+  }
+
+  if ($profileRname == "") {
+?>
+<div id="body">
+  <div class="body_center">
+    <div class="user_banner">
+      <h4>Sorry! No Such User Exists!</h4> 
+    </div>
+  </div>
+</div>
+
+<?php
+  } else {
+?>
+<div id="body">
+  <div class="body_center" style="top:10px;">
+    <div class="user_banner">
+      <img id="user_pic_main" src="<?php echo $profileUserPic;  ?>" <?php
+  if ($profileUname == $uname) {
+    echo " onmouseover=\"editstyle('user_pic_main')\" onmouseout=\"normalstyle('user_pic_main')\"";
+    echo " onclick=\"showeditor('edit_profile_picture')\"";
+  }
+?>> <h4>
+<?php echo $profileUname; ?></h4>
+      <div id="user_text" style=""<?php
+  if ($profileUname == $uname) {
+    echo " onmouseover=\"editstyle('user_text')\" onmouseout=\"normalstyle('user_text')\"";
+    echo " onclick=\"showeditor('edit_profile_text')\"";
+  }
+?>>
+<?php
+  if ($profileUname == $uname && $profileProfile == "") { 
+    echo "<div class=\"mute_text\">Click to add Profile Text.</div>";
+  } else {
+    echo $profileProfile;
+  }
+  echo "<div class=\"profile_link\"><a href=\"" . $profileURL . "\" class=\"profile\">" . $profileURL . "</a></div>";
+?>
+  
+  </div>
+
+    </div>
+  <br><div class="user_panel_wrapper">
+<?php include "/data/klattr.com/www/includes/user_panel"; ?>    
+    <div class="feed_inner" style="width:450px">
+      <div id="klattr_parent">
+<?php include "/data/klattr.com/www/includes/klattr_retrieve_queries"; ?>
+<?php include "/data/klattr.com/www/includes/render_klattrs"; ?>
+<?php include "/data/klattr.com/www/includes/do_scroll"; ?>
+      </div><br class="clear" />
+    </div>
+  </div>
+  </div>
+
+</div>
+<?php
+if ($profileUname == $uname) {
+?>
+
+
+
+<div id="dim"></div>
+<div class="dialog_wrapper" id="edit_profile_text">
+  <div class="dialog">
+    <h5>Edit Profile Text & Web Address.</h5>
+    <img src="/gfx/hr.png" width="450" height="1"/>
+    <Form name="EditProfile" action="/do_profile_text_edit.php" method="post">
+      Profile Text:<br>
+      <textarea rows="4" cols="60" name="profileText" placeholder="Describe yourself here."><?php echo $profileProfile; ?></textarea><br>
+      Web Address:<br>
+      <input type="text" class="gen_input_left" name="webAddress" value="<?php echo $profileURL;?>">
+      <input type="hidden" name="senduname" value="<?php echo $profileUname; ?>">
+      <input type="submit" class="submit_login" style="width:100px;" value="Save It">
+      <input type="button" onclick="hideeditor('edit_profile_text')" class="cancel_login" style="width:100px;" value="Cancel">
+    </Form>
+  </div>
+</div>
+
+<div class="dialog_wrapper" id="edit_profile_picture">
+  <div class="dialog">
+    <h5>Edit Profile Picture</h5>
+    <img src="/gfx/hr.png" width="450" height="1"/>
+    <form name="EditProfilePicture" enctype="multipart/form-data" action="/do_profile_picture_edit.php" method="post">
+      Choose image file:<br>
+      <div class="image_edit">
+        <img id="image_upload" src="<?php echo $userPic;?>" class="preview_image" /> 
+      </div>
+      <div class="file_wrapper">
+        <button class="btn-file-input">Choose File</button>
+        <input type="hidden" name="senduname" value="<?php echo $profileUname; ?>">
+        <input id="imgInp" type="file" name="file" accept="image/gif, image/jpeg, image/png" />
+      </div>
+      <input type="submit" class="submit_login" style="width:100px;" value="Save It">
+      <input type="button" onclick="hideeditor('edit_profile_picture')" class="cancel_login" style="width:100px;" value="Cancel">
+    </form>
+  </div>
+</div>
+<?php
+}
+
+}
+?>

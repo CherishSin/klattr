@@ -1,0 +1,25 @@
+<?php
+  while ($row = mysqli_fetch_array($sql_result)){
+    if ($row['Handle'] != "") {
+      $pcount ++;
+      $person_id = $row['ID'];
+?>
+
+<div class="klattr_div">
+  <div class="name_block">
+    <a href="https://klattr.com/<?php echo $row['Handle']; ?>"><h7><?php echo $row['Handle']; ?></h7>
+    (<?php echo $row['Name']; ?>)</a>
+  </div>
+  <a href="https://klattr.com/<?php echo $row['Handle']; ?>"><img id="user_pic" src="<?php echo $row['Handle']; ?>.jpeg"></a>
+  <div style="height:30px;width:270px;position:relative;float:right;margin-right:5px;"><?php echo $row['Profile_Text']; ?></div>
+    
+        <br><img src="/gfx/hr.png" width="430" />
+</div>
+
+<?php
+    }
+  }
+?>
+<img src="/gfx/vr.png" width="0" height="0" onload="set_oldest(<?php echo $person_id; ?>);this.parentNode.removeChild(this);" \>
+<?php
+?>

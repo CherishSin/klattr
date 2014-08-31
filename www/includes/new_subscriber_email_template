@@ -1,0 +1,10 @@
+<html>
+<body>
+<div style="width:600px;margin-right:auto;margin-left:auto;border-style:solid;border-width:1px;">
+<h1 style="color:#ffffff;background-color:#686A88;padding:5px;margin:0px">You have a new subscriber!</h1><div style="background-image:url('https://klattr.com/gfx/welcome_bg.png');background-repeat:no-repeat;padding:5px">
+Dear FULLNAME.<br><br>
+SENDER has just subscribed to your Klattr feed! Why not <a href="klattr.com/SENDER">login</a> and say 'Hi'.<br><br>
+The Klattr Team.
+</div></div>
+</body>
+</html>

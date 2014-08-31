@@ -1,0 +1,469 @@
+@font-face {
+ font-family: KlattrFontBold;
+ src: url("/fonts/Serif_Bold.eot") /* EOT file for IE */
+}
+@font-face {
+ font-family: KlattrFontBold;
+ src: url("/fonts/Serif_Bold.ttf") /* TTF file for CSS3 browsers */
+}
+
+@font-face {
+ font-family: KlattrFont;
+ src: url("/fonts/Serif.eot") /* EOT file for IE */
+}
+@font-face {
+ font-family: KlattrFont;
+ src: url("/fonts/Serif.ttf") /* TTF file for CSS3 browsers */
+} 
+
+
+body
+{
+  color:#ffffff;
+  background-color:#686A88;
+  background-image:url('/gfx/darkened.gif.png');
+  background-repeat:no-repeat;
+  background-position:center top;
+  background-attachment:fixed;
+  #height:100%;
+  margin:0px;
+  overflow:auto;
+  font-size:14px;
+  font-family:  KlattrFont, Arial;
+}
+
+a{
+  color:#6628a6;
+  text-decoration:none;
+}
+
+.fake-link {
+  color:#6628a6;
+  text-decoration:none;
+  cursor: pointer;
+}
+
+div.profile_link{
+  position:absolute;
+  bottom:3px;
+  width:640px;
+}
+
+a.profile{
+  position:relative;
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+
+}
+
+a:hover{
+  text-decoration:none;
+}
+
+#container {
+  min-height:100%;
+  position:relative;
+}
+
+#header {
+  position:fixed;
+  width:100%;
+  z-index:50;
+  background:#444;
+  height:30px;
+  padding:0px;
+  box-shadow:0px 0px 4px #000000;
+}
+#body {
+  position:relative;
+  padding:10px;
+  padding-bottom:30px;   /* Height of the footer */
+  height:100%;
+  #overflow:auto;
+}
+
+div.feed {
+  position:relative;
+  width:758px;
+  /* Fallback for web browsers that doesn't support RGBa */
+  background: rgb(255, 255, 255) transparent;
+  /* RGBa with 0.3 opacity */
+  background: rgba(255, 255, 255, 0.3);
+  /* For IE 5.5 - 7*/
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#55ffffff, endColorstr=#55ffffff);
+  /* For IE 8*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#55ffffff, endColorstr=#55ffffff)";
+  left:10px;
+  top:-100px;
+  padding-top:50px;
+  padding-bottom:10px;
+  color:#000;
+  height:auto;
+  min-height:230px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+div.user_panel_wrapper{
+  //position:relative;
+  //background-color:#ff0000;
+  overflow:auto;
+  //top:-100px;
+  width:780px;
+  padding:0px;
+}
+
+div.user_panel {
+  position:relative;
+
+  //position:fixed;
+  color:#000;
+  float:right;
+  background-color:#fff;
+  width:250px;
+  padding:10px;
+  margin-right:10px;
+  border-width:1px;
+  border-style:solid;
+  border-color:#464866;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+
+}
+
+div.feed_inner {
+  position:relative;
+  color:#000;
+  background-color:#fff;
+  width:430px;
+//  padding:10px;
+  margin-left:10px;
+  margin-bottom:100px;
+  border-width:1px;
+  border-style:solid;
+  border-color:#464866;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+#footer {
+  position:fixed;
+  bottom:0;
+  width:100%;
+  height:30px;   /* Height of the footer */
+  background:#444;
+  box-shadow:0px 0px 4px #000000;
+}
+
+#header_logo {
+  position:relative;
+  float:left;
+  top:3px;
+  margin-right:25px;
+  border:0px;
+}
+
+#user_text {
+  position:relative;
+  border-style:none;
+  border:3px;
+  width:640px;
+  height:60px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  float:right;
+}
+
+div.header_center{
+  position:relative;
+  width:770px;
+  margin-left:auto;
+  margin-right:auto;
+  padding-right:30px;
+  padding-top:0px;
+  top:0px;
+}
+
+div.body_center{
+  position:relative;
+  width:800px;
+  margin-left:auto;
+  margin-right:auto;
+  top:100px;
+}
+
+div.login{
+  position:relative;
+  background-color:#ffffff;
+  float:left;
+  left:-10px;
+  width:358px;
+  height:210px;
+  color:#222222;
+  margin:20px;
+  border-width:1px;
+  border-style:solid;
+  border-color:#464866;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+div.welcome{
+  position:relative;
+  background-color:#ffffff;
+  background-repeat:no-repeat;
+  background-image:url('/gfx/welcome_bg.png');
+  float:left;
+  left:-10px;
+  width:758px;
+  height:100px;
+  color:#222222;
+  margin:20px;
+  border-width:1px;
+  border-style:solid;
+  border-color:#464866;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+div.user_banner{
+  position:relative;
+  background-color:#ffffff;
+  background-repeat:no-repeat;
+  background-image:url('/gfx/welcome_bg.png');
+  float:left;
+  left:-10px;
+  //top:-90px;
+  width:738px;
+  height:93px;
+  padding:10px;
+  color:#222222;
+  margin:20px;
+  border-width:1px;
+  border-style:solid;
+  border-color:#464866;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-align:center;
+}
+
+
+div.legal{
+  position:relative;
+  background-color:#ffffff;
+  width:456px;
+  height:200px;
+  color:#555555;
+  margin-left:15px;
+  margin-right:15px;
+  margin-top:0px;
+  margin-bottom:0px;
+  border-width:1px;
+  border-style:solid;
+  border-color:#bdbdbd;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  overflow:auto; 
+  font-size:9px;
+}
+
+div.do_signup{
+  position:relative;
+  background-color:#ffffff;
+  background-repeat:no-repeat;
+  background-image:url('/gfx/welcome_bg.png');
+  float:left;
+  left:-10px;
+  width:758px;
+  color:#222222;
+  margin:20px;
+  border-width:1px;
+  border-style:solid;
+  border-color:#464866;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+
+
+div.copyright{
+  position:relative;
+  float:right;
+  right:20px;
+  top:7px;
+}
+
+
+h1{
+  margin-left:20px;
+  font-family: KlattrFontBold, Arial;
+  font-weight:normal;
+}
+
+h2{
+  position:relative;
+  margin-left:15px;
+  top:15px;
+  font-size:14px;
+  font-family:  KlattrFontBold, Arial;
+  font-weight:normal;
+  display:inline;
+}
+
+h3{
+  position:relative;
+  top:15px;
+  font-size:14px;
+  font-family:  KlattrFontBold, Arial;
+  font-weight:normal;
+  display:inline;
+  color:#686A88;
+}
+
+h4 {
+  position:relative;
+  display:inline;
+  font-size:32px;
+  font-weight:normal;
+  text-align:left;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+h5 {
+  position:relative;
+  display:inline;
+  font-size:20px;
+}
+
+h6 {
+  display:inline;
+  font-size:14px;
+  font-family:  KlattrFontBold, Arial;
+  color:#686A88;
+  margin-top:5px;
+  margin-bottom:5px;
+  text-decoration:none; 
+  font-weight:normal; 
+}
+
+h7 {
+  position:relative;
+  font-size:15px;
+  font-family:  KLattrFontBold, Arial;
+  font-weight:normal;
+  color:#686A88;
+  display:block;
+  vertical-align:top;
+}
+
+div.form_text
+{
+  position:relative;
+  top:8px;
+  display:inline;
+  width:250px;
+}
+
+div.form_val
+{
+  position:relative;
+  top:8px;
+  display:inline;
+  width:250px;
+  float:right;
+  padding-left:20px;
+}
+
+
+div.form_line{
+  overflow:auto;
+  margin-left:15px;
+  margin-right:15px;
+  margin-top:0px;
+  margin-bottom:0px;
+  height:35px;
+  padding:2px;
+}
+
+input.submit_login{
+  float:right;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border-left:solid 1px #55bb44;
+  border-top:solid 1px #55bb44;
+  border-right:solid 1px #228811;
+  border-bottom:solid 1px #228811;
+  background-image:url('/gfx/login_button.png');
+  height:28px;
+  width:80px;
+  box-shadow:0px 2px 2px #666666;
+}
+
+input.cancel_login{
+  float:right;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border-left:solid 1px #bb5544;
+  border-top:solid 1px #bb5544;
+  border-right:solid 1px #882211;
+  border-bottom:solid 1px #882211;
+  background-image:url('/gfx/cancel_button.png');
+  height:28px;
+  width:80px;
+  box-shadow:0px 2px 2px #666666;
+  margin-right:5px;
+}
+
+
+input.button_inactive{
+  float:right;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border-left:solid 1px #cccccc;
+  border-top:solid 1px #cccccc;
+  border-right:solid 1px #aaaaaa;
+  border-bottom:solid 1px #aaaaaa;
+  height:28px;
+  width:80px;
+  box-shadow:0px 2px 2px #cccccc;
+  color:#aaaaaa;
+}
+
+
+input.submit_login:hover{
+  background-image:url('/gfx/login_button_dark.png');
+  cursor:pointer;
+}
+
+input.cancel_login:hover{
+  background-image:url('/gfx/cancel_button_dark.png');
+  cursor:pointer;
+}
+
+div.file_wrapper{
+  float:left;
+  height:32px;
+  width:100px;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+}
+
+div.file_wrapper > .btn-file-input{
+  display:inline-block;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border-top:solid 1px #bbbb44;
+  border-left:solid 1px #bbbb44;
+  border-right:solid 1px #888811;
+  border-bottom:solid 1px #888811;
+  background-image:url('/gfx/signup_button.png');
+  height:28px;
+  width:100px;
+  box-shadow:0px 2px 2px #666666;
+  cursor:pointer;
+}
+
+div.file_wr

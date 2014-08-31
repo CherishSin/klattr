@@ -1,0 +1,77 @@
+<?php
+$uname_plus_space = " " .$uname . " ";
+$oldest_text = "";
+if (isset($oldest)) {
+  if ($page == "peopleSearch" || $page == "subscribed_to") {
+    $oldest_text = "AND ID < '" . $oldest ."' ";
+    $search_limit = 10;
+  } else {
+    $oldest_text = "AND Povs.ID < '" . $oldest ."' ";
+  }
+}
+
+if ($page == "subscribed_to") {
+  $sql = "SELECT ID, Subscribed_To FROM Users WHERE Handle='$profileID'";
+  $sql_result = mysqli_query($con,$sql);
+  $row = mysqli_fetch_array($sql_result);
+  $panelUID = $row['ID'];
+  $sub_list = preg_replace('/\s\s+/', '|', $row['Subscribed_To']);
+  $sub_regexp = str_replace(" ", "|", $sub_list);
+  $sub_regexp = substr($sub_regexp, 1 , -1);
+  $sql = "SELECT ID, Handle, Name, Profile_Text FROM Users WHERE Handle REGEXP '" . $sub_regexp . "' " . $oldest_text . "AND Activated = '1' ORDER BY ID DESC LIMIT 0, 10";
+
+//echo $sql;
+
+}
+
+if ($page == "replies") {
+  $sql = "SELECT Povs.Recipient, Povs.Num_Replies, Povs.ID, Povs.Title, Povs.Tags, Povs.Data, Povs.Private, Povs.Time_Posted, Povs.Waveform, Users.Handle FROM Users INNER JOIN Povs ON Povs.Poster=Users.ID WHERE Povs.Parent_ID='$parentId' AND Povs.Private='0' AND Users.Activated = '1' ORDER BY ID DESC LIMIT 0, 10";
+}
+
+//echo $page;
+if ($page == "peopleSearch") {
+  $sql = "SELECT ID, Handle, Name, Profile_Text FROM Users WHERE (Handle REGEXP '$searchTerm' OR Name REGEXP '$searchTerm')" . $oldest_text . " AND Activated = '1' ORDER BY ID DESC LIMIT 0, " . $search_limit;
+
+//echo $sql;
+//echo "Got here";
+
+}
+
+
+if ($page == "user") {
+  $sql = "SELECT Povs.Recipient, Povs.Num_Replies, Povs.ID, Povs.Title, Povs.Tags, Povs.Data, Povs.Private, Povs.Time_Posted, Povs.Waveform, Users.Handle FROM Users INNER JOIN Povs ON Povs.Poster=Users.ID WHERE Povs.Poster='$profileID' AND Povs.Private='0' " . $oldest_text . " AND Users.Activated = '1' ORDER BY ID DESC LIMIT 0, 10";
+}
+
+if ($page == "Feed") {
+  $sql = "SELECT Subscribed_To FROM Users WHERE ID='$UID'";
+  $sql_results = mysqli_query($con,$sql);
+  $row = mysqli_fetch_array($sql_results);
+  $sub_list = $row['Subscribed_To'];
+//echo "subed: " . $sub_list . $UID;
+  $sub_regexp = str_replace(" ", "|", $sub_list);
+  $sub_regexp = substr($sub_regexp, 1 , -1);
+//echo "regexp: " . $sub_regexp;  
+  if ($sub_regexp != "") {
+    $sub_regexp = "Users.Handle REGEXP '" . $sub_regexp . "' OR ";
+  }
+  
+//echo "regexp: " . $sub_regexp;
+  $sql = "SELECT Povs.Recipient, Povs.Num_Replies, Povs.ID, Povs.Title, Povs.Tags, Povs.Data, Povs.Private, Povs.Time_Posted, Povs.Waveform, Users.Handle FROM Users INNER JOIN Povs ON Povs.Poster=Users.ID WHERE (" . $sub_regexp . "INSTR(Povs.Recipient, '$uname_plus_space') > 0 OR Povs.Poster='$UID') AND Povs.Private='0' " . $oldest_text . " AND Users.Activated = '1'ORDER BY ID DESC LIMIT 0, 10";
+
+//echo "<br>" . $sql;
+}
+
+if ($page == "search") {
+  $sql = "SELECT Povs.Recipient, Povs.Num_Replies, Povs.ID, Povs.Title, Povs.Tags, Povs.Data, Povs.Private, Povs.Time_Posted, Povs.Waveform, Users.Handle FROM Users INNER JOIN Povs ON Povs.Poster=Users.ID WHERE (Povs.Tags REGEXP '$searchTerm' OR Povs.Title REGEXP '$searchTerm') AND Povs.Private='0' " . $oldest_text . " AND Users.Activated = '1'ORDER BY ID DESC LIMIT 0, 10";
+}
+
+if ($page == "Forme") {
+  $sql = "SELECT Povs.Recipient, Povs.Num_Replies, Povs.ID, Povs.Title, Povs.Tags, Povs.Data, Povs.Private, Povs.Time_Posted, Povs.Waveform, Users.Handle FROM Users INNER JOIN Povs ON Povs.Poster=Users.ID WHERE (INSTR(Povs.Recipient, '$uname_plus_space') > 0) AND Povs.Private='0' " . $oldest_text . " AND Users.Activated = '1'ORDER BY ID DESC LIMIT 0, 10";
+}
+
+$sql_result = mysqli_query($con,$sql);
+
+
+
+
+?>

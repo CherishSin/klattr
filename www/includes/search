@@ -1,0 +1,58 @@
+<div id="body">
+  <div class="body_center">
+    <div class="feed">
+      <?php include "/data/klattr.com/www/includes/user_panel"; ?>
+
+        <div class="feed_inner" style="margin-bottom:10px;"><div class="klattr_div">
+    <form name="SearchForm2" action="/search.php" method="GET">
+      <div class="form_line"><input type="submit" class="search_submit" value="Go"><input type="text" class="search_input" name="search" <?php 
+if ($page == "peopleSearch") { ?> 
+placeholder="Search People!"
+<?php } else { ?>
+placeholder="Search!"
+<?php } ?>
+style="width:350px"></div>
+    </form>
+        </div></div>
+
+      <div class="feed_inner" <?php if ($page == "peopleSearch") { ?> id="klattr_parent" <?php } ?> style="margin-bottom:10px;">
+
+<h5>People.</h5>
+<?php 
+if ($page == "peopleSearch") {
+  $search_limit = 10;
+  include "/data/klattr.com/www/includes/search_people";
+  ?></div><?php
+} else {
+  $search_limit = 3;
+
+include "/data/klattr.com/www/includes/search_people";
+$page ="search";
+?>
+      </div>
+
+      <div class="feed_inner" id="klattr_parent">
+<?php include "/data/klattr.com/www/includes/klattr_retrieve_queries"; ?>
+
+<h5>Klattrs.</h5>
+
+<?php include "/data/klattr.com/www/includes/render_klattrs"; ?>
+<?php include "/data/klattr.com/www/includes/do_scroll"; ?>
+
+<?php
+if ($count == 0) {
+?>
+
+        <div class="klattr_div">
+          <center>Sorry. No results found.</center>
+        </div>
+
+<?php
+}
+}
+
+?>
+      </div>
+    </div>
+  </div>
+</div>
