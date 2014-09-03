@@ -9,6 +9,9 @@ if (isset($_COOKIE['session_auth'])) {
   $cookie_key = $_COOKIE['session_auth'];
   $UID = evaluate_cookie($cookie_key, $ip);
   if ($UID !== 0) {
+    /*  $UID is now an SQL injection attack
+        if UID is just Numeric - then so if(!ctype_digit($UID)) { return false; }
+    */
     $sql = "SELECT Handle, Name, Profile_Text, Avatar, Email_Addr, Activated FROM Users WHERE ID='$UID'";
     $sql_result = mysqli_query($con,$sql);
     $row = mysqli_fetch_array($sql_result);
@@ -16,7 +19,7 @@ if (isset($_COOKIE['session_auth'])) {
     $rname = $row['Name'];
     $uEmailAddr = $row['Email_Addr'];
     $profile = $row['Profile_Text'];
-    if ($row['Avatar'] === "" || $row['Avatar'] === NULL) {
+    if (empty($row['Avatar'])) {
       $userPic = "/gfx/default_user.png";
     } else {
       $userPic = $uname . ".jpeg";
@@ -35,4 +38,3 @@ if (isset($_COOKIE['session_auth'])) {
 } else {
   $auth = 0;
 }
-?>
