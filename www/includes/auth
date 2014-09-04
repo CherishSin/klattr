@@ -7,6 +7,10 @@ if (isset($_COOKIE['session_auth'])) {
     $ip = $_SERVER['REMOTE_ADDR'];
   }
   $cookie_key = $_COOKIE['session_auth'];
+/* Sanitize $cookie_key */
+  $cookie_key = htmlspecialchars($cookie_key);
+  $cookie_key = addslashes($cookie_key);
+
   $UID = evaluate_cookie($cookie_key, $ip);
   if ($UID !== 0) {
     /*  $UID is now an SQL injection attack

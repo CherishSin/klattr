@@ -41,6 +41,11 @@ function evaluate_pass ($e_pass) {
 }
 
 function evaluate_uname ($e_uname) {
+
+// sanitize before injection
+  $e_uname = htmlspecialchars($e_uname);
+  $e_uname = addslashes($e_uname);
+
   global $con;
   if (preg_match("/^[a-zA-Z0-9_]+$/",$e_uname)) {
     $sql = "SELECT Handle FROM Users WHERE Handle='$e_uname'";

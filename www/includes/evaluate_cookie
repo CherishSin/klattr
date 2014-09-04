@@ -4,6 +4,7 @@ function evaluate_cookie ($e_key, $e_ip) {
   
   /*
     what is $e_key ? - should check it - SQL injection.  
+    -It is the key from the cookie, it is sanitized before this function call.
   */
   
   $sql = "SELECT SessionKey, UserID, IP FROM Session WHERE SessionKey='$e_key'";

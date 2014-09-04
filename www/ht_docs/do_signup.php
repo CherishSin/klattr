@@ -75,9 +75,13 @@ if (isset($_COOKIE['session_auth'])) {
         $row = mysqli_fetch_array($sql_result);
         $UID = $row['ID'];
         $session_date = date("Y-m-d h:i:s");
+        setcookie ("session_auth", $randkey, $expire_time, "/", ".klattr.com");
+/*make sure the cookie in the database matches sanitized cookie from user*/
+        $randkey = htmlspecialchars($randkey);
+        $randkey = addslashes($randkey);
+
         $sql = "INSERT INTO Session (SessionKey, UserID, IP, Date) VALUES ('$randkey','$UID','$ip','$session_date')";
         mysqli_query($con,$sql);
-        setcookie ("session_auth", $randkey, $expire_time, "/", ".klattr.com");
         $uname = $username;
         $rname = $name;
         $uEmailAddr = $email;
