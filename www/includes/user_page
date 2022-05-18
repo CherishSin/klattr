@@ -6,7 +6,7 @@
   $profileRname = $row['Name'];
   $profileProfile = $row['Profile_Text'];
   $profileURL = $row['Website_Addr'];
-  $profileID = $row[ID];
+  $profileID = $row['ID'];
   if ($row['Avatar'] === "" || $row['Avatar'] === NULL) {
     $profileUserPic = "/gfx/default_user.png";
   } else {

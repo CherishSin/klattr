@@ -6,7 +6,7 @@ server {
 
 server {
   listen	80;
-  server_name	www.klattr.com klattr.info klattr.co.uk klattr.net www.klattr.info www.klattr.co.uk www.klattr.net klattr.org www.klattr.org;
+  server_name	www.klattr.com wokometer.info wokometer.co.uk wokometer.net www.wokometer.info www.wokometer.co.uk www.wokometer.net wokometer.org www.wokometer.org;
   rewrite        ^ https://klattr.com$request_uri? permanent;
 }
 
@@ -15,9 +15,9 @@ server {
   server_name    klattr.com;
   ssl on;
 
-  ssl_certificate      /opt/certs/pems/klattr.com.pem;
-  ssl_certificate_key  /opt/certs/pems/key.pem;
-  client_max_body_size 4M;
+  ssl_certificate      /etc/letsencrypt/live/klattr.com/fullchain.pem;
+  ssl_certificate_key  /etc/letsencrypt/live/klattr.com/privkey.pem;
+  client_max_body_size 11M;
 
   root /data/klattr.com/www/ht_docs;
 
@@ -97,19 +97,19 @@ server {
   }
 
   location ~ .jpeg$ {
-    resolver 208.67.222.222;
+    resolver 8.8.4.4;
     proxy_set_header        X-Real-IP       $remote_addr;
     proxy_pass https://klattr.com/show_jpg.php?jpeg=$request_uri;
   } 
 
   location ~ .ogg$ {
-    resolver 208.67.222.222;
+    resolver 8.8.4.4;
     proxy_set_header        X-Real-IP       $remote_addr;
     proxy_pass https://klattr.com/play_sound.php?sound=$request_uri;
   }
 
   location ~ .mp3$ {
-    resolver 208.67.222.222;
+    resolver 8.8.4.4;
     proxy_set_header        X-Real-IP       $remote_addr;
     proxy_pass https://klattr.com/play_sound.php?sound=$request_uri;
   } 

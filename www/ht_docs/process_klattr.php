@@ -8,7 +8,6 @@ if ($auth == 1) {
   $ttl = 0;
 
   $klattr_path = $_FILES['klattr_audio']['tmp_name'];
-
   $title = $_POST['klattr_title'];
   $recipients = $_POST['klattr_recipients'];
   $tags = $_POST['klattr_tags'];
@@ -48,9 +47,13 @@ if ($auth == 1) {
   $lame = "/usr/bin/lame";
   $imagePath = "/tmp/" . $uniqueName . ".png";
 
-  $wav2pngResult = `$wav2png --foreground-color=FFFFFFFF --background-color=686A88FF -w 700 -h 100 -d -o $imagePath $klattr_path  2>&1`;
+  //  $wav2pngResult = `$wav2png --foreground-color=FFFFFFFF --background-color=686A88FF -w 700 -h 100 -d -o $imagePath $klattr_path  2>&1`;
+  trigger_error("\n here is the thing: $klattr_path\n", E_USER_WARNING);
+  //$wav2pngResult = `$wav2png --foreground-color=FFFFFFFF --background-color=686A88FF -w 700 -h 100 -d -o $imagePath $klattr_path  &> /tmp/wav2pngout`;
+  $wav2pngResult = `/usr/bin/ffmpeg -i $klattr_path -filter_complex "showwavespic=s=700x100" -frames:v 1 $imagePath`;
   $oggencResults = `$oggenc -o /data/klattr.com/www/povs/$uniqueName.ogg $klattr_path`;
   $lameResults = `$lame $klattr_path /data/klattr.com/www/povs/$uniqueName.mp3`;
+  $cpresults = `/usr/bin/cp $klattr_path /data/klattr.com/www/ht_docs/test.wav`;
 
   $waveform = new Imagick($imagePath);
   $waveform->setImageFormat('png');
@@ -61,9 +64,9 @@ if ($auth == 1) {
   $sql = "INSERT INTO Povs (Title, Tags, Data, Poster, Recipient, Private, Parent_ID, Time_Posted, TTL, Waveform) VALUES ('$title', '$tags', '$uniqueName', '$UID', '$recipients', '$private', '$parent', '$postDate', '$ttl', '$waveform')";
 
   mysqli_query($con,$sql);
-  $error = mysqli_error();
+  $error = mysqli_error($con);
   file_put_contents('/tmp/error', $error);
-  unlink($imagePath);
+  //unlink($imagePath);
 
   if (isset($parent)) {
     $sql = "UPDATE Povs Set Num_Replies = Num_Replies + 1 WHERE ID='$parent' ";

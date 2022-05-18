@@ -3,6 +3,9 @@
   <div class="header_center">
     <a href="https://klattr.com"><img src="/gfx/klattr_text_small.png" id="header_logo"></a>
 <?php
+if (!isset($activatePage)){
+    $activatePage = 0;
+}
 if ($auth == 1 && $activatePage != 1) {
 ?>
     <div onclick="location.href='https://klattr.com'" class="header_button<?php if ($page == "Feed") {echo "_selected";}  ?>">&#9777; Feed</div>

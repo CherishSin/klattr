@@ -7,7 +7,7 @@ if ($auth == 1) {
   if(strpos($profileURL, 'http') !== 0) {
     $profileURL = "http://" . $profileURL;
   }
-  if(!filter_var($profileURL, FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED)) {
+  if(!filter_var($profileURL, FILTER_VALIDATE_URL)) {
     $profileURL = "";
   }
 /*Sanitize the vars that are going into the database*/
