@@ -20,7 +20,7 @@ if ($auth == 1) {
   $sql = "DELETE FROM Povs WHERE Data='$klattr_name' AND Poster='$UID'";
 
   mysqli_query($con,$sql);
-  $error = mysqli_error();
+  $error = mysqli_error($con);
   file_put_contents('/tmp/error', $error);
   unlink($klattr_path_ogg);
   unlink($klattr_path_mp3);

@@ -7,6 +7,8 @@ while ($row = mysqli_fetch_array($sql_result)){
     $klattr_id = $row['ID'];
   if (isset($nestLevel)) {
     $nestID = "_nest" . $nestLevel;
+  } else {
+    $nestID = "";
   }
 ?>
 <div class="klattr_div" id="<?php echo $row['Data'] . $nestID;?>"><div class="klattr_div_inner">
@@ -74,6 +76,9 @@ foreach ($recipient_array as &$recipient){
 ?>
 </div>  
 <?php
+    }
+    if (!isset($nestLevel)) {
+        $nestLevel = 0;
     }
 ?>    
   <img src="/gfx/hr.png" width="430" height="1" id="devider<?php echo $row['ID'] . '_' . $nestLevel; ?>">

@@ -60,15 +60,17 @@ if (isset($_COOKIE['session_auth'])) {
         $exists = $e_e + $e_u;
         include "/data/klattr.com/www/includes/signup_page";
       } else {
+	$generate_salt = generate_salt($len = 8); 
+	$salt = "$5$" . $generate_salt . "$";
         $enc_password = urlencode($password);
-        $password_hash = crypt($enc_password);
+        $password_hash = crypt($enc_password, $salt);
 #      $randkey = substr(str_shuffle(md5(time())),0,128);
 #      $randkey = substr(sha1(rand()), 0, 128);
         $randomData = file_get_contents('/dev/urandom', false, null, 0, 128) . uniqid(mt_rand(), true);
         $randkey = substr(str_replace(array('/','=','+'),'', base64_encode($randomData)),0,128);
 
         $ip = $_SERVER['REMOTE_ADDR'];
-        $sql = "INSERT INTO Users (Name, Email_Addr, Password_hash, Handle) VALUES ('$name','$email','$password_hash','$username')";
+        $sql = "INSERT INTO Users (Name, Email_Addr, Password_hash, Handle, Salt) VALUES ('$name','$email','$password_hash','$username', '$salt')";
         mysqli_query($con,$sql);
         $sql = "SELECT ID FROM Users WHERE Handle='$username'";
         $sql_result = mysqli_query($con,$sql);

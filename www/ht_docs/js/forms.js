@@ -319,10 +319,11 @@ var search_term;
   }
 
   function delete_klattr(klattr) {
+    console.log(document.forms.namedItem("delete"))
     console.log("here")
     var
       oOutput = document.getElementById("output"),
-      oData = new FormData(document.forms.namedItem("delete_klattr"));
+      oData = new FormData(document.forms.namedItem("delete"));
 
     oData.append("klattr", klattr);
 
