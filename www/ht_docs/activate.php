@@ -1,6 +1,5 @@
 <?php
 $activatePage = 1;
-include "sitename";
 include "/data/klattr.com/www/includes/auth";
 if ($auth == 1) {
   if (isset($_GET['key'])) {
