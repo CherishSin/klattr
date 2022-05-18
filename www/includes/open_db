@@ -1,7 +1,7 @@
 <?php
     // Create connection
     global $con;
-    $con=mysqli_connect("localhost","klattr","8GYk9CHUmfG9pQkN","live_movdb");
+    $con=mysqli_connect("localhost","klattr","xxxxxxxxxx","live_povr");
 
     // Check connection
     if (mysqli_connect_errno())
