@@ -6,7 +6,7 @@ server {
 
 server {
   listen	80;
-  server_name	www.klattr.com wokometer.info wokometer.co.uk wokometer.net www.wokometer.info www.wokometer.co.uk www.wokometer.net wokometer.org www.wokometer.org;
+  server_name	www.klattr.com klattr.info klattr.co.uk klattr.net www.klattr.info www.klattr.co.uk www.klattr.net klattr.org www.klattr.org;
   rewrite        ^ https://klattr.com$request_uri? permanent;
 }
 
